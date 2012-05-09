@@ -1,0 +1,6 @@
+[submodule "JSLint"]
+	path = JSLint
+	url = https://github.com/mikewest/JSLint.git
+[submodule "csslint"]
+	path = csslint
+	url = https://github.com/stubbornella/csslint.git
