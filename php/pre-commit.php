@@ -6,13 +6,13 @@ $return = 0;
 exec('git rev-parse --verify HEAD 2> /dev/null', $output, $return);
 $against = $return == 0 ? 'HEAD' : '4b825dc642cb6eb9a060e54bf8d69288fbee4904';
 
-exec("git diff-index --cached --name-only {$against}", $output);
+exec("git diff-index --name-only --cached HEAD -- | grep -P '\.((js)|(html)|(json))$'", $output);
 
 $filename_pattern = '/\.((php)|(inc)|(module))$/';
 $exit_status = 0;
 
 foreach ($output as $file) {
-    if (!preg_match($filename_pattern, $file)) {
+    if (!preg_match($filename_pattern, $file) || !file_exists($file)) {
         // don't check files that aren't PHP
         continue;
     }
