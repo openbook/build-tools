@@ -8,7 +8,7 @@ $against = $return == 0 ? 'HEAD' : '4b825dc642cb6eb9a060e54bf8d69288fbee4904';
 
 exec("git diff-index --cached --name-only {$against}", $output);
 
-$filename_pattern = '/\.php$/';
+$filename_pattern = '/\.((php)|(inc)|(module))$/';
 $exit_status = 0;
 
 foreach ($output as $file) {
