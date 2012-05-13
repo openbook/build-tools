@@ -55,6 +55,20 @@ for file in $(git diff-index --name-only --cached HEAD -- | grep -P '\.css$'); d
 
 done
 
+###########################   XML Lint    ###########################
+
+for file in $(git diff-index --name-only --cached HEAD -- | grep -P '\.xml$'); do
+
+    xmltest=$(xmllint --noout ${file})
+
+    if [ $? -gt 0 ] ; then
+
+        printf "XML error in $file \n$xmltest"
+        exit 1
+
+    fi
+
+done
 
 ###########################   PHP Lint    ###########################
 
